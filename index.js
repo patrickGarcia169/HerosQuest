@@ -50,10 +50,10 @@ let gruntEnemy = new Enemy("Grunt", 50, 15, 1, 1);
 let captainEnemy = new Enemy("Captain", 100, 30, 3, 3);
 
 // Bosses
-let firstBoss = new Enemy("Dirt Face", 200, 55, 6, 6);
-let secondBoss = new Enemy("Grong", 250, 60, 10, 10);
-let thirdBoss = new Enemy("Herp", 300, 70, 25, 15);
-let fourthBoss = new Enemy("Krinkle", 400, 80, 50, 20);
+let firstBoss = new Enemy("Dirgor", 200, 55, 6, 6);
+let secondBoss = new Enemy("Grongor", 250, 60, 10, 10);
+let thirdBoss = new Enemy("Hergor", 300, 70, 25, 15);
+let fourthBoss = new Enemy("Kringor", 400, 80, 50, 20);
 let finalBoss = new Enemy("Smelgor", 1000, 100, 100, 100);
 
 let normalArr = [firstBoss, secondBoss, thirdBoss, fourthBoss, finalBoss];
