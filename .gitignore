@@ -1,0 +1,4 @@
+# ignore all .txt files
+*.txt
+
+# More ways of ignoring is in https://github.com/github/gitignore
