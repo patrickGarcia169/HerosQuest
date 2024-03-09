@@ -65,6 +65,7 @@ let bossArr = [firstBoss, secondBoss, thirdBoss, fourthBoss, finalBoss];
 function begin(){
     
     setLS();
+    saveToLS();
 
     healthText.innerHTML = "Health: " + health;
     xpText.innerHTML = "XP: " + xp;
@@ -232,7 +233,7 @@ function grunt(){
     button2.onclick = town;
     button3.style.display = "None";
 
-    mainText.innerHTML = "You have " + health + " points of health. Your " + inv[inv.length-1].name + " does " + inv[inv.length-1].damage + " points of damage. <br/> The grunt has " + gruntEnemy.health + " points of health. He does " + gruntEnemy.damage + " points of damage.";
+    mainText.innerHTML = "You have " + health + " points of health. Your " + inv[inv.length-1].name + " does " + inv[inv.length-1].damag + " points of damage. <br/> The grunt has " + gruntEnemy.health + " points of health. He does " + gruntEnemy.damage + " points of damage.";
     
 }
 
@@ -403,6 +404,7 @@ function saveToLS(){
         localStorage.setItem("Gold", JSON.stringify(gold));
         localStorage.setItem("Weapons", JSON.stringify(inv));
         localStorage.setItem("Bosses", JSON.stringify(normalArr));
+        localStorage.setItem("Shop Inventory", JSON.stringify(shopInv));
     }
 }
 
@@ -421,22 +423,11 @@ function setLS(){
     if(localStorage){
         gold = JSON.parse(localStorage.getItem("Gold"));
         xp = JSON.parse(localStorage.getItem("XP"));
-        
-        // if(inv.length === 0){
-        //     inv += stick;
-        // }
-        // else{
-        //     inv = JSON.parse(localStorage.getItem("Weapons"));
-        // }
+        inv = JSON.parse(localStorage.getItem("Weapons"));
         
         //normalArr = JSON.parse(localStorage.getItem("Bosses"));
+        //shopInv = JSON.parse(localStorage.getItem("Shop Inventory"));
+
+        //SOLVED THE ARRAY PROBLEM BY PUTTING setLS() before saveToLS() in begin()
     }
 }
-
-// local storage turns it into an array while inv is an object [transfer and change the array into an object]
-//inv = JSON.parse(localStorage.getItem("Weapons"));
-console.log(inv);
-// JSON is an object and the inv is an array, but inv becomes an object with inv = JSON.parse(localStorage.getItem("Weapons"));
-console.log(typeof JSON.parse(localStorage.getItem("Weapons")) === "object");
-console.log(typeof JSON.parse(localStorage.getItem("Weapons")) === "object");
-console.log(Array.isArray(inv));
