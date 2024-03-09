@@ -32,7 +32,9 @@ let axe = new Weapon("Axe", 35, 25);
 let megaSword = new Weapon("Mega Sword", 50, 50);
 
 let inv = [stick];
+const baseInv = [stick];
 let shopInv = [club, sword, axe, megaSword];
+const baseShopInv = [club, sword, axe, megaSword];
 
 // Enemies
 class Enemy{
@@ -64,6 +66,7 @@ let bossArr = [firstBoss, secondBoss, thirdBoss, fourthBoss, finalBoss];
 // Starting Function
 function begin(){
     
+    // Local Storage
     setLS();
     saveToLS();
 
@@ -233,7 +236,7 @@ function grunt(){
     button2.onclick = town;
     button3.style.display = "None";
 
-    mainText.innerHTML = "You have " + health + " points of health. Your " + inv[inv.length-1].name + " does " + inv[inv.length-1].damag + " points of damage. <br/> The grunt has " + gruntEnemy.health + " points of health. He does " + gruntEnemy.damage + " points of damage.";
+    mainText.innerHTML = "You have " + health + " points of health. Your " + inv[inv.length-1].name + " does " + inv[inv.length-1].damage + " points of damage. <br/> The grunt has " + gruntEnemy.health + " points of health. He does " + gruntEnemy.damage + " points of damage.";
     
 }
 
@@ -378,25 +381,6 @@ function inventory(){
 
 /*-------------------------------------------------------------------*/
 
-// Local Storage Check
-if (localStorage){
-    let goldLS = localStorage.getItem("Gold");
-    console.log("Gold: " + goldLS);
-
-    let xpLS = localStorage.getItem("XP");
-    console.log("XP: " + xpLS);
-
-    let invLS = localStorage.getItem("Weapons");
-    console.log("Inventory: " + invLS);
-
-    let bossLS = localStorage.getItem("Bosses");
-    console.log("Bosses: " + bossLS);
-}
-else{
-    console.log("Local storage is not supported");
-}
-
-
 // Local Storage Save
 function saveToLS(){
     if(localStorage){
@@ -404,7 +388,7 @@ function saveToLS(){
         localStorage.setItem("Gold", JSON.stringify(gold));
         localStorage.setItem("Weapons", JSON.stringify(inv));
         localStorage.setItem("Bosses", JSON.stringify(normalArr));
-        localStorage.setItem("Shop Inventory", JSON.stringify(shopInv));
+        localStorage.setItem("Store Inventory", JSON.stringify(shopInv));
     }
 }
 
@@ -413,8 +397,9 @@ function resetLS(){
     if(localStorage){
         localStorage.setItem("XP", JSON.stringify(0));
         localStorage.setItem("Gold", JSON.stringify(0));
-        localStorage.setItem("Weapons", JSON.stringify(inv[0]));
+        localStorage.setItem("Weapons", JSON.stringify(baseInv));
         localStorage.setItem("Bosses", JSON.stringify(bossArr));
+        localStorage.setItem("Store Inventory", JSON.stringify(baseShopInv));
     }
 }
 
@@ -424,10 +409,7 @@ function setLS(){
         gold = JSON.parse(localStorage.getItem("Gold"));
         xp = JSON.parse(localStorage.getItem("XP"));
         inv = JSON.parse(localStorage.getItem("Weapons"));
-        
-        //normalArr = JSON.parse(localStorage.getItem("Bosses"));
-        //shopInv = JSON.parse(localStorage.getItem("Shop Inventory"));
-
-        //SOLVED THE ARRAY PROBLEM BY PUTTING setLS() before saveToLS() in begin()
+        normalArr = JSON.parse(localStorage.getItem("Bosses"));
+        shopInv = JSON.parse(localStorage.getItem("Store Inventory"));
     }
 }
